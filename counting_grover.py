@@ -148,7 +148,7 @@ def grover_search(
 
 def main():
     n_data = 3        
-    shots = 2048        # qasm shots for Grover
+    shots = 4096        # qasm shots for Grover
     os.makedirs("logs", exist_ok=True)
 
     oracle = makeOracle()

@@ -11,28 +11,22 @@ import os
 '''
 def makeOracle() -> QuantumCircuit:
     qc = QuantumCircuit(4, name="O_spec")
-
     """
-    phase 'kickback' ancilla: |-> = H X |0>
-    X|-> = -|->, a CCX targeting this ancilla implements a phase flip (−1) exactly when its controls are satisfied
+    X|-> = -|->, a CCX targeting this ancilla 
+    implements a phase flip (−1) exactly when its 
+    controls are satisfied
     """
-    
     qc.x(3)
     qc.h(3)
-
     mcx3 = MCXGate(3)  # 3-control X gate
-
     qc.x(0)                    
     qc.append(mcx3, [2, 1, 0, 3])
     qc.x(0)                    
-
     qc.x(1)                    
     qc.append(mcx3, [2, 1, 0, 3])
     qc.x(1)                   
-
     qc.h(3)
     qc.x(3)
-
     return qc
 
 def save_png_mpl(filename: str = "circuit_models/oracle.png") -> None:
