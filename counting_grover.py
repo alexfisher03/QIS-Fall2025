@@ -169,15 +169,15 @@ def main():
         counts = grover_search(oracle, n_data, K, shots, log)
 
         items: List[Tuple[str,int]] = sorted(counts.items(), key=lambda x: x[1], reverse=True)
-        print(f"N={N}  n={n_data}  K={K}  r≈{r}  shots={shots}")
-        print("Top outcomes (bitstrings as z2 z1 z0):")
+        log.write(f"N={N}  n={n_data}  K={K}  r≈{r}  shots={shots}\n")
+        log.write("Top outcomes (bitstrings as z2 z1 z0):\n")
         for s, c in items[:8]:
-            print(f"  {s} : {c}")
+            log.write(f"  {s} : {c}\n")
 
         expected_unsafe = {"110", "101"}
         top_set = set(s for s,_ in items[:4])
-        print(f"Expected unsafe: {expected_unsafe}")
-        print(f"Top-4 found    : {top_set}")
+        log.write(f"Expected unsafe: {expected_unsafe}\n")
+        log.write(f"Top-4 found    : {top_set}\n")
 
         log.write("[Done] counting_grover end\n")
 
